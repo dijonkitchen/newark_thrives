@@ -1,6 +1,7 @@
 class CreateProgramDetails < ActiveRecord::Migration
   def change
     create_table :program_details do |t|
+      t.references :program, index: true, foreign_key: true
       t.string :address, null: false
       t.string :phone_number, null: false
       t.string :description, null: false
