@@ -465,3 +465,389 @@ ActionView::MissingTemplate (Missing template programs/index, application/index 
   Rendered /Users/jonchen/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
   Rendered /Users/jonchen/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
   Rendered /Users/jonchen/.rbenv/versions/2.2.4/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (125.7ms)
+  [1m[36m (29.4ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (5.2ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreatePrograms (20160326175839)
+  [1m[35m (0.6ms)[0m  BEGIN
+  [1m[36m (17.0ms)[0m  [1mCREATE TABLE "programs" ("id" serial primary key, "name" character varying NOT NULL, "link" character varying NOT NULL, "start_date" date NOT NULL, "end_date" date NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (1.9ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160326175839"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+Migrating to CreateProgramDetails (20160326181651)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (6.7ms)[0m  [1mCREATE TABLE "program_details" ("id" serial primary key, "address" character varying NOT NULL, "phone_number" character varying NOT NULL, "description" character varying NOT NULL, "days_offered" character varying NOT NULL, "time" character varying NOT NULL, "location_type" character varying NOT NULL, "meals_offered" character varying NOT NULL, "grades_served" character varying NOT NULL, "enrollment_type" character varying NOT NULL, "enrollment_period" character varying NOT NULL, "enrollment_requirements" character varying NOT NULL, "cost" character varying NOT NULL, "focus" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160326181651"]]
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (8.3ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'program_details'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (6.0ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'programs'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36mProgram Load (1.4ms)[0m  [1mSELECT "programs".* FROM "programs"[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (1.5ms)[0m  [1mINSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "test"], ["link", "test"], ["start_date", "4713-01-01 BC"], ["end_date", "4713-01-01 BC"], ["created_at", "2016-03-26 18:37:15.693048"], ["updated_at", "2016-03-26 18:37:15.693048"]]
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36mProgram Load (0.7ms)[0m  [1mSELECT "programs".* FROM "programs"[0m
+  [1m[35mProgram Load (4.0ms)[0m  SELECT  "programs".* FROM "programs"  ORDER BY "programs"."id" ASC LIMIT 1
+  [1m[36mProgramDetail Load (3.9ms)[0m  [1mSELECT "program_details".* FROM "program_details"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Sanford, Rau and Nienow"], ["link", "http://cruickshank.info/delaney.cole"], ["start_date", "2016-04-04"], ["end_date", "2016-04-02"], ["created_at", "2016-03-26 18:47:03.574973"], ["updated_at", "2016-03-26 18:47:03.574973"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Bradtke, Shields and Lehner"], ["link", "http://schinner.biz/abigale"], ["start_date", "2016-03-27"], ["end_date", "2016-05-29"], ["created_at", "2016-03-26 18:47:03.583046"], ["updated_at", "2016-03-26 18:47:03.583046"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Mayert and Sons"], ["link", "http://bradtke.co/marilyne.collins"], ["start_date", "2016-03-27"], ["end_date", "2016-03-29"], ["created_at", "2016-03-26 18:47:03.586799"], ["updated_at", "2016-03-26 18:47:03.586799"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Vandervort, Metz and Johnson"], ["link", "http://zboncakrau.io/orlo"], ["start_date", "2016-04-16"], ["end_date", "2016-04-09"], ["created_at", "2016-03-26 18:47:03.590671"], ["updated_at", "2016-03-26 18:47:03.590671"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Stroman, Feil and Hegmann"], ["link", "http://rau.co/oleta_kunze"], ["start_date", "2016-04-19"], ["end_date", "2016-08-09"], ["created_at", "2016-03-26 18:47:03.594272"], ["updated_at", "2016-03-26 18:47:03.594272"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Wehner-Ebert"], ["link", "http://douglas.info/lamar.ziemann"], ["start_date", "2016-04-19"], ["end_date", "2016-07-08"], ["created_at", "2016-03-26 18:47:03.597610"], ["updated_at", "2016-03-26 18:47:03.597610"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Zboncak-Schumm"], ["link", "http://conn.net/libby_heidenreich"], ["start_date", "2016-04-10"], ["end_date", "2016-06-24"], ["created_at", "2016-03-26 18:47:03.600955"], ["updated_at", "2016-03-26 18:47:03.600955"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Fahey and Sons"], ["link", "http://tremblay.com/favian.okuneva"], ["start_date", "2016-05-21"], ["end_date", "2016-09-04"], ["created_at", "2016-03-26 18:47:03.604305"], ["updated_at", "2016-03-26 18:47:03.604305"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Hartmann, Brekke and Feest"], ["link", "http://eichmannzieme.org/laurie"], ["start_date", "2016-06-16"], ["end_date", "2016-06-22"], ["created_at", "2016-03-26 18:47:03.607604"], ["updated_at", "2016-03-26 18:47:03.607604"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Schroeder, Effertz and Tremblay"], ["link", "http://davis.net/johnathon"], ["start_date", "2016-03-30"], ["end_date", "2016-06-07"], ["created_at", "2016-03-26 18:47:03.611041"], ["updated_at", "2016-03-26 18:47:03.611041"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Kuphal LLC"], ["link", "http://mueller.info/conner_kuhn"], ["start_date", "2016-04-30"], ["end_date", "2016-03-27"], ["created_at", "2016-03-26 18:47:03.614287"], ["updated_at", "2016-03-26 18:47:03.614287"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Romaguera, Cronin and Stracke"], ["link", "http://fahey.org/ara_rutherford"], ["start_date", "2016-04-02"], ["end_date", "2016-07-19"], ["created_at", "2016-03-26 18:47:03.617708"], ["updated_at", "2016-03-26 18:47:03.617708"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Gleichner LLC"], ["link", "http://schmitt.net/cynthia"], ["start_date", "2016-04-19"], ["end_date", "2016-06-11"], ["created_at", "2016-03-26 18:47:03.621516"], ["updated_at", "2016-03-26 18:47:03.621516"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Leffler-Satterfield"], ["link", "http://boyer.co/holden"], ["start_date", "2016-04-02"], ["end_date", "2016-07-19"], ["created_at", "2016-03-26 18:47:03.624886"], ["updated_at", "2016-03-26 18:47:03.624886"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Okuneva Group"], ["link", "http://ankundingledner.net/joesph"], ["start_date", "2016-03-28"], ["end_date", "2016-07-04"], ["created_at", "2016-03-26 18:47:03.628229"], ["updated_at", "2016-03-26 18:47:03.628229"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Greenfelder, Grant and Hartmann"], ["link", "http://harveyhane.io/reuben"], ["start_date", "2016-04-22"], ["end_date", "2016-04-05"], ["created_at", "2016-03-26 18:47:03.631733"], ["updated_at", "2016-03-26 18:47:03.631733"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Hudson-Blanda"], ["link", "http://sipes.io/adolph_robel"], ["start_date", "2016-04-06"], ["end_date", "2016-03-30"], ["created_at", "2016-03-26 18:47:03.635167"], ["updated_at", "2016-03-26 18:47:03.635167"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Gislason, Kub and Trantow"], ["link", "http://torp.info/jordi_ankunding"], ["start_date", "2016-03-28"], ["end_date", "2016-04-26"], ["created_at", "2016-03-26 18:47:03.638751"], ["updated_at", "2016-03-26 18:47:03.638751"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Watsica and Sons"], ["link", "http://gleichner.name/cora_dare"], ["start_date", "2016-05-06"], ["end_date", "2016-04-03"], ["created_at", "2016-03-26 18:47:03.642127"], ["updated_at", "2016-03-26 18:47:03.642127"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Koepp Inc"], ["link", "http://ward.net/gavin"], ["start_date", "2016-04-14"], ["end_date", "2016-08-27"], ["created_at", "2016-03-26 18:47:03.645787"], ["updated_at", "2016-03-26 18:47:03.645787"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mProgram Load (0.7ms)[0m  SELECT "programs".* FROM "programs"
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO "program_details" ("address", "phone_number", "description", "days_offered", "time", "location_type", "meals_offered", "grades_served", "enrollment_type", "enrollment_period", "enrollment_requirements", "cost", "focus", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"  [["address", "69985 Hamill TrackCristophermouth"], ["phone_number", "1-992-080-0261"], ["description", "Selvage diy pickled dreamcatcher crucifix."], ["days_offered", "2016-03-24"], ["time", "8:00AM - 6:00PM"], ["location_type", "+1"], ["meals_offered", "roof"], ["grades_served", "disrupt"], ["enrollment_type", "swag"], ["enrollment_period", "cleanse"], ["enrollment_requirements", "pour-over"], ["cost", "90's"], ["focus", "Chia truffaut master authentic heirloom blue bottle 3 wolf moon."], ["created_at", "2016-03-26 18:47:03.678814"], ["updated_at", "2016-03-26 18:47:03.678814"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (6.9ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'program_details'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (5.7ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'programs'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (6.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (2.1ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreatePrograms (20160326175839)
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (7.5ms)[0m  [1mCREATE TABLE "programs" ("id" serial primary key, "name" character varying NOT NULL, "link" character varying NOT NULL, "start_date" date NOT NULL, "end_date" date NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160326175839"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+Migrating to CreateProgramDetails (20160326181651)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (6.6ms)[0m  [1mCREATE TABLE "program_details" ("id" serial primary key, "program_id" integer, "address" character varying NOT NULL, "phone_number" character varying NOT NULL, "description" character varying NOT NULL, "days_offered" character varying NOT NULL, "time" character varying NOT NULL, "location_type" character varying NOT NULL, "meals_offered" character varying NOT NULL, "grades_served" character varying NOT NULL, "enrollment_type" character varying NOT NULL, "enrollment_period" character varying NOT NULL, "enrollment_requirements" character varying NOT NULL, "cost" character varying NOT NULL, "focus" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (1.5ms)[0m  CREATE  INDEX  "index_program_details_on_program_id" ON "program_details"  ("program_id")
+  [1m[36m (7.9ms)[0m  [1mALTER TABLE "program_details" ADD CONSTRAINT "fk_rails_1200ce8797"
+FOREIGN KEY ("program_id")
+  REFERENCES "programs" ("id")
+[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20160326181651"]]
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.3ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (7.8ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'program_details'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (6.1ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'programs'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (2.2ms)[0m  [1mINSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Wiegand and Sons"], ["link", "http://predovic.com/dion_murphy"], ["start_date", "2016-06-04"], ["end_date", "2016-05-30"], ["created_at", "2016-03-26 18:48:39.177645"], ["updated_at", "2016-03-26 18:48:39.177645"]]
+  [1m[35m (2.9ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Kerluke, Herzog and Schaden"], ["link", "http://bauch.name/immanuel"], ["start_date", "2016-06-07"], ["end_date", "2016-07-14"], ["created_at", "2016-03-26 18:48:39.189996"], ["updated_at", "2016-03-26 18:48:39.189996"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Hodkiewicz, Hills and Crona"], ["link", "http://cain.net/robbie.jacobson"], ["start_date", "2016-04-09"], ["end_date", "2016-05-05"], ["created_at", "2016-03-26 18:48:39.193613"], ["updated_at", "2016-03-26 18:48:39.193613"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Walter Group"], ["link", "http://predovic.org/thelma.stokes"], ["start_date", "2016-04-24"], ["end_date", "2016-09-03"], ["created_at", "2016-03-26 18:48:39.197671"], ["updated_at", "2016-03-26 18:48:39.197671"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Koelpin-Tillman"], ["link", "http://bechtelar.org/jennings"], ["start_date", "2016-05-30"], ["end_date", "2016-04-08"], ["created_at", "2016-03-26 18:48:39.201416"], ["updated_at", "2016-03-26 18:48:39.201416"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Rolfson-Dicki"], ["link", "http://hudsonemard.co/deie"], ["start_date", "2016-04-03"], ["end_date", "2016-09-04"], ["created_at", "2016-03-26 18:48:39.205109"], ["updated_at", "2016-03-26 18:48:39.205109"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Turcotte-Toy"], ["link", "http://erdmangreenholt.com/mayra"], ["start_date", "2016-04-05"], ["end_date", "2016-08-20"], ["created_at", "2016-03-26 18:48:39.208538"], ["updated_at", "2016-03-26 18:48:39.208538"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Gutkowski-West"], ["link", "http://macgyver.info/jake.farrell"], ["start_date", "2016-04-28"], ["end_date", "2016-06-02"], ["created_at", "2016-03-26 18:48:39.211783"], ["updated_at", "2016-03-26 18:48:39.211783"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Kihn-Ward"], ["link", "http://farrellondricka.info/americo"], ["start_date", "2016-04-28"], ["end_date", "2016-08-24"], ["created_at", "2016-03-26 18:48:39.215161"], ["updated_at", "2016-03-26 18:48:39.215161"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Leannon-Wilderman"], ["link", "http://hoppe.info/dejuan_adams"], ["start_date", "2016-04-03"], ["end_date", "2016-05-06"], ["created_at", "2016-03-26 18:48:39.218481"], ["updated_at", "2016-03-26 18:48:39.218481"]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Mayert, Schneider and Kuhn"], ["link", "http://barrows.org/jaiden"], ["start_date", "2016-05-12"], ["end_date", "2016-04-03"], ["created_at", "2016-03-26 18:48:39.221638"], ["updated_at", "2016-03-26 18:48:39.221638"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Sporer, Willms and Predovic"], ["link", "http://williamson.biz/edwina"], ["start_date", "2016-04-29"], ["end_date", "2016-09-15"], ["created_at", "2016-03-26 18:48:39.225035"], ["updated_at", "2016-03-26 18:48:39.225035"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Herzog-Erdman"], ["link", "http://corwinrunolfon.io/micheal"], ["start_date", "2016-05-16"], ["end_date", "2016-05-16"], ["created_at", "2016-03-26 18:48:39.228950"], ["updated_at", "2016-03-26 18:48:39.228950"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Wilkinson LLC"], ["link", "http://adamchultz.info/concepcion_lindgren"], ["start_date", "2016-04-11"], ["end_date", "2016-05-23"], ["created_at", "2016-03-26 18:48:39.232293"], ["updated_at", "2016-03-26 18:48:39.232293"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Beatty Inc"], ["link", "http://stanton.io/coby_hackett"], ["start_date", "2016-04-22"], ["end_date", "2016-06-21"], ["created_at", "2016-03-26 18:48:39.235671"], ["updated_at", "2016-03-26 18:48:39.235671"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Nolan, Dach and Schuster"], ["link", "http://kshlerinbernhard.biz/theresa_abernathy"], ["start_date", "2016-06-06"], ["end_date", "2016-04-07"], ["created_at", "2016-03-26 18:48:39.239055"], ["updated_at", "2016-03-26 18:48:39.239055"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Yundt Group"], ["link", "http://sanford.co/opal_herman"], ["start_date", "2016-04-10"], ["end_date", "2016-05-21"], ["created_at", "2016-03-26 18:48:39.242450"], ["updated_at", "2016-03-26 18:48:39.242450"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Rempel-Renner"], ["link", "http://gulgowskiosinski.com/wellington.pfannerstill"], ["start_date", "2016-04-09"], ["end_date", "2016-08-02"], ["created_at", "2016-03-26 18:48:39.245832"], ["updated_at", "2016-03-26 18:48:39.245832"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["name", "Jones, Wyman and Braun"], ["link", "http://hane.com/ferne"], ["start_date", "2016-04-19"], ["end_date", "2016-07-22"], ["created_at", "2016-03-26 18:48:39.249359"], ["updated_at", "2016-03-26 18:48:39.249359"]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "programs" ("name", "link", "start_date", "end_date", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"  [["name", "Lebsack-Tromp"], ["link", "http://cole.net/alexane"], ["start_date", "2016-04-14"], ["end_date", "2016-03-27"], ["created_at", "2016-03-26 18:48:39.252807"], ["updated_at", "2016-03-26 18:48:39.252807"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mProgram Load (0.6ms)[0m  SELECT "programs".* FROM "programs"
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "program_details" ("address", "phone_number", "description", "days_offered", "time", "location_type", "meals_offered", "grades_served", "enrollment_type", "enrollment_period", "enrollment_requirements", "cost", "focus", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"  [["address", "2579 Harber ForgesBenjaminfurt"], ["phone_number", "(116) 789-0261"], ["description", "Twee vinegar drinking beard leggings."], ["days_offered", "2016-03-25"], ["time", "8:00AM - 6:00PM"], ["location_type", "neutra"], ["meals_offered", "butcher"], ["grades_served", "yr"], ["enrollment_type", "beard"], ["enrollment_period", "everyday"], ["enrollment_requirements", "scenester"], ["cost", "neutra"], ["focus", "Hella ramps etsy gentrify direct trade tousled."], ["created_at", "2016-03-26 18:48:39.285501"], ["updated_at", "2016-03-26 18:48:39.285501"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mProgramDetail Load (0.7ms)[0m  SELECT  "program_details".* FROM "program_details" WHERE "program_details"."program_id" = $1 LIMIT 1  [["program_id", 1]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (2.0ms)[0m  UPDATE "program_details" SET "program_id" = $1, "updated_at" = $2 WHERE "program_details"."id" = $3  [["program_id", 1], ["updated_at", "2016-03-26 18:48:39.318221"], ["id", 1]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "program_details" ("address", "phone_number", "description", "days_offered", "time", "location_type", "meals_offered", "grades_served", "enrollment_type", "enrollment_period", "enrollment_requirements", "cost", "focus", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["address", "988 Homenick CirclesLake Werner"], ["phone_number", "(902) 815-6989"], ["description", "Ramps street banh mi selfies dreamcatcher five dollar toast."], ["days_offered", "2016-03-24"], ["time", "8:00AM - 6:00PM"], ["location_type", "meh"], ["meals_offered", "offal"], ["grades_served", "tofu"], ["enrollment_type", "vegan"], ["enrollment_period", "tilde"], ["enrollment_requirements", "typewriter"], ["cost", "cliche"], ["focus", "Banh mi marfa flexitarian squid single-origin coffee goth distillery."], ["created_at", "2016-03-26 18:48:39.332561"], ["updated_at", "2016-03-26 18:48:39.332561"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mProgramDetail Load (0.4ms)[0m  [1mSELECT  "program_details".* FROM "program_details" WHERE "program_details"."program_id" = $1 LIMIT 1[0m  [["program_id", 2]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mUPDATE "program_details" SET "program_id" = $1, "updated_at" = $2 WHERE "program_details"."id" = $3[0m  [["program_id", 2], ["updated_at", "2016-03-26 18:48:39.339525"], ["id", 2]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "program_details" ("address", "phone_number", "description", "days_offered", "time", "location_type", "meals_offered", "grades_served", "enrollment_type", "enrollment_period", "enrollment_requirements", "cost", "focus", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"  [["address", "85347 Euna LoopNew Zariachester"], ["phone_number", "1-807-222-3023"], ["description", "You probably haven't heard of them brooklyn echo selvage kinfolk pbr&b street austin franzen."], ["days_offered", "2016-03-26"], ["time", "8:00AM - 6:00PM"], ["location_type", "kogi"], ["meals_offered", "marfa"], ["grades_served", "mixtape"], ["enrollment_type", "wolf"], ["enrollment_period", "roof"], ["enrollment_requirements", "bitters"], ["cost", "waistcoat"], ["focus", "Cleanse williamsburg waistcoat neutra yr."], ["created_at", "2016-03-26 18:48:39.344659"], ["updated_at", "2016-03-26 18:48:39.344659"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mProgramDetail Load (0.4ms)[0m  SELECT  "program_details".* FROM "program_details" WHERE "program_details"."program_id" = $1 LIMIT 1  [["program_id", 3]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  UPDATE "program_details" SET "program_id" = $1, "updated_at" = $2 WHERE "program_details"."id" = $3  [["program_id", 3], ["updated_at", "2016-03-26 18:48:39.350006"], ["id", 3]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "program_details" ("address", "phone_number", "description", "days_offered", "time", "location_type", "meals_offered", "grades_served", "enrollment_type", "enrollment_period", "enrollment_requirements", "cost", "focus", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["address", "831 Ariane PointsWillmshaven"], ["phone_number", "826.801.3498"], ["description", "Cleanse asymmetrical xoxo pinterest."], ["days_offered", "2016-03-26"], ["time", "8:00AM - 6:00PM"], ["location_type", "street"], ["meals_offered", "street"], ["grades_served", "cronut"], ["enrollment_type", "irony"], ["enrollment_period", "heirloom"], ["enrollment_requirements", "authentic"], ["cost", "letterpress"], ["focus", "Portland sartorial helvetica."], ["created_at", "2016-03-26 18:48:39.354910"], ["updated_at", "2016-03-26 18:48:39.354910"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36mProgramDetail Load (0.4ms)[0m  [1mSELECT  "program_details".* FROM "program_details" WHERE "program_details"."program_id" = $1 LIMIT 1[0m  [["program_id", 4]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mUPDATE "program_details" SET "program_id" = $1, "updated_at" = $2 WHERE "program_details"."id" = $3[0m  [["program_id", 4], ["updated_at", "2016-03-26 18:48:39.360268"], ["id", 4]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "program_details" ("address", "phone_number", "description", "days_offered", "time", "location_type", "meals_offered", "grades_served", "enrollment_type", "enrollment_period", "enrollment_requirements", "cost", "focus", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"  [["address", "23370 Daugherty PassageRueckerborough"], ["phone_number", "1-808-044-5044"], ["description", "Neutra portland salvia lumbersexual shoreditch."], ["days_offered", "2016-03-25"], ["time", "8:00AM - 6:00PM"], ["location_type", "fingerstache"], ["meals_offered", "cronut"], ["grades_served", "disrupt"], ["enrollment_type", "beard"], ["enrollment_period", "poutine"], ["enrollment_requirements", "distillery"], ["cost", "hella"], ["focus", "Cornhole paleo celiac diy direct trade."], ["created_at", "2016-03-26 18:48:39.365955"], ["updated_at", "2016-03-26 18:48:39.365955"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mProgramDetail Load (0.5ms)[0m  SELECT  "program_details".* FROM "program_details" WHERE "program_details"."program_id" = $1 LIMIT 1  [["program_id", 5]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  UPDATE "program_details" SET "program_id" = $1, "updated_at" = $2 WHERE "program_details"."id" = $3  [["program_id", 5], ["updated_at", "2016-03-26 18:48:39.371792"], ["id", 5]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "program_details" ("address", "phone_number", "description", "days_offered", "time", "location_type", "meals_offered", "grades_served", "enrollment_type", "enrollment_period", "enrollment_requirements", "cost", "focus", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["address", "1676 Kaylie GlensSouth Mittiechester"], ["phone_number", "(462) 585-1368"], ["description", "Cornhole schlitz sartorial pitchfork."], ["days_offered", "2016-03-24"], ["time", "8:00AM - 6:00PM"], ["location_type", "bitters"], ["meals_offered", "kickstarter"], ["grades_served", "chartreuse"], ["enrollment_type", "ugh"], ["enrollment_period", "vice"], ["enrollment_requirements", "Thundercats"], ["cost", "DIY"], ["focus", "Mlkshk tousled distillery keytar."], ["created_at", "2016-03-26 18:48:39.377482"], ["updated_at", "2016-03-26 18:48:39.377482"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mProgramDetail Load (0.4ms)[0m  [1mSELECT  "program_details".* FROM "program_details" WHERE "program_details"."program_id" = $1 LIMIT 1[0m  [["program_id", 6]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE "program_details" SET "program_id" = $1, "updated_at" = $2 WHERE "program_details"."id" = $3[0m  [["program_id", 6], ["updated_at", "2016-03-26 18:48:39.383684"], ["id", 6]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "program_details" ("address", "phone_number", "description", "days_offered", "time", "location_type", "meals_offered", "grades_served", "enrollment_type", "enrollment_period", "enrollment_requirements", "cost", "focus", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"  [["address", "36153 Lurline WallPort Vilma"], ["phone_number", "1-418-660-7856"], ["description", "Thundercats twee gentrify franzen pbr&b vice carry iphone."], ["days_offered", "2016-03-24"], ["time", "8:00AM - 6:00PM"], ["location_type", "farm-to-table"], ["meals_offered", "echo"], ["grades_served", "authentic"], ["enrollment_type", "lomo"], ["enrollment_period", "iPhone"], ["enrollment_requirements", "heirloom"], ["cost", "chillwave"], ["focus", "Pitchfork hella echo heirloom."], ["created_at", "2016-03-26 18:48:39.388249"], ["updated_at", "2016-03-26 18:48:39.388249"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mProgramDetail Load (0.2ms)[0m  SELECT  "program_details".* FROM "program_details" WHERE "program_details"."program_id" = $1 LIMIT 1  [["program_id", 7]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "program_details" SET "program_id" = $1, "updated_at" = $2 WHERE "program_details"."id" = $3  [["program_id", 7], ["updated_at", "2016-03-26 18:48:39.392415"], ["id", 7]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "program_details" ("address", "phone_number", "description", "days_offered", "time", "location_type", "meals_offered", "grades_served", "enrollment_type", "enrollment_period", "enrollment_requirements", "cost", "focus", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["address", "745 Runte DriveCassintown"], ["phone_number", "(442) 338-2309"], ["description", "Kinfolk normcore microdosing franzen disrupt direct trade pug."], ["days_offered", "2016-03-25"], ["time", "8:00AM - 6:00PM"], ["location_type", "sartorial"], ["meals_offered", "normcore"], ["grades_served", "Thundercats"], ["enrollment_type", "aesthetic"], ["enrollment_period", "wayfarers"], ["enrollment_requirements", "fingerstache"], ["cost", "Thundercats"], ["focus", "Wolf austin green juice raw denim."], ["created_at", "2016-03-26 18:48:39.396593"], ["updated_at", "2016-03-26 18:48:39.396593"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mProgramDetail Load (0.2ms)[0m  [1mSELECT  "program_details".* FROM "program_details" WHERE "program_details"."program_id" = $1 LIMIT 1[0m  [["program_id", 8]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "program_details" SET "program_id" = $1, "updated_at" = $2 WHERE "program_details"."id" = $3[0m  [["program_id", 8], ["updated_at", "2016-03-26 18:48:39.401172"], ["id", 8]]
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "program_details" ("address", "phone_number", "description", "days_offered", "time", "location_type", "meals_offered", "grades_served", "enrollment_type", "enrollment_period", "enrollment_requirements", "cost", "focus", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"  [["address", "165 Grant StreetRobelchester"], ["phone_number", "(851) 671-0968"], ["description", "Banjo try-hard jean shorts art party."], ["days_offered", "2016-03-25"], ["time", "8:00AM - 6:00PM"], ["location_type", "tacos"], ["meals_offered", "disrupt"], ["grades_served", "viral"], ["enrollment_type", "plaid"], ["enrollment_period", "migas"], ["enrollment_requirements", "scenester"], ["cost", "vice"], ["focus", "Godard cray knausgaard put a bird on it."], ["created_at", "2016-03-26 18:48:39.405794"], ["updated_at", "2016-03-26 18:48:39.405794"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mProgramDetail Load (0.2ms)[0m  SELECT  "program_details".* FROM "program_details" WHERE "program_details"."program_id" = $1 LIMIT 1  [["program_id", 9]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "program_details" SET "program_id" = $1, "updated_at" = $2 WHERE "program_details"."id" = $3  [["program_id", 9], ["updated_at", "2016-03-26 18:48:39.409985"], ["id", 9]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "program_details" ("address", "phone_number", "description", "days_offered", "time", "location_type", "meals_offered", "grades_served", "enrollment_type", "enrollment_period", "enrollment_requirements", "cost", "focus", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["address", "321 Judy DamLake Horaciostad"], ["phone_number", "(957) 645-0277"], ["description", "Ramps gluten-free leggings 90's fingerstache pour-over kinfolk."], ["days_offered", "2016-03-25"], ["time", "8:00AM - 6:00PM"], ["location_type", "shoreditch"], ["meals_offered", "PBR&B"], ["grades_served", "banjo"], ["enrollment_type", "mlkshk"], ["enrollment_period", "skateboard"], ["enrollment_requirements", "intelligentsia"], ["cost", "Godard"], ["focus", "Put a bird on it irony vhs hammock humblebrag paleo."], ["created_at", "2016-03-26 18:48:39.414331"], ["updated_at", "2016-03-26 18:48:39.414331"]]
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36mProgramDetail Load (0.2ms)[0m  [1mSELECT  "program_details".* FROM "program_details" WHERE "program_details"."program_id" = $1 LIMIT 1[0m  [["program_id", 10]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "program_details" SET "program_id" = $1, "updated_at" = $2 WHERE "program_details"."id" = $3[0m  [["program_id", 10], ["updated_at", "2016-03-26 18:48:39.419100"], ["id", 10]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "program_details" ("address", "phone_number", "description", "days_offered", "time", "location_type", "meals_offered", "grades_served", "enrollment_type", "enrollment_period", "enrollment_requirements", "cost", "focus", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"  [["address", "8951 Cortney ViewsRosendoland"], ["phone_number", "1-492-512-1383"], ["description", "Echo bicycle rights raw denim next level williamsburg."], ["days_offered", "2016-03-26"], ["time", "8:00AM - 6:00PM"], ["location_type", "tacos"], ["meals_offered", "yr"], ["grades_served", "actually"], ["enrollment_type", "typewriter"], ["enrollment_period", "pickled"], ["enrollment_requirements", "everyday"], ["cost", "retro"], ["focus", "Lomo cronut semiotics godard street microdosing."], ["created_at", "2016-03-26 18:48:39.423606"], ["updated_at", "2016-03-26 18:48:39.423606"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mProgramDetail Load (0.2ms)[0m  SELECT  "program_details".* FROM "program_details" WHERE "program_details"."program_id" = $1 LIMIT 1  [["program_id", 11]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "program_details" SET "program_id" = $1, "updated_at" = $2 WHERE "program_details"."id" = $3  [["program_id", 11], ["updated_at", "2016-03-26 18:48:39.428081"], ["id", 11]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "program_details" ("address", "phone_number", "description", "days_offered", "time", "location_type", "meals_offered", "grades_served", "enrollment_type", "enrollment_period", "enrollment_requirements", "cost", "focus", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["address", "275 Dietrich LocksBayleefurt"], ["phone_number", "959.063.1428"], ["description", "Fanny pack quinoa organic twee celiac art party lumbersexual ethical."], ["days_offered", "2016-03-25"], ["time", "8:00AM - 6:00PM"], ["location_type", "ethical"], ["meals_offered", "lomo"], ["grades_served", "normcore"], ["enrollment_type", "quinoa"], ["enrollment_period", "taxidermy"], ["enrollment_requirements", "butcher"], ["cost", "banjo"], ["focus", "Keffiyeh celiac flannel venmo polaroid 8-bit heirloom cornhole."], ["created_at", "2016-03-26 18:48:39.432496"], ["updated_at", "2016-03-26 18:48:39.432496"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mProgramDetail Load (0.2ms)[0m  [1mSELECT  "program_details".* FROM "program_details" WHERE "program_details"."program_id" = $1 LIMIT 1[0m  [["program_id", 12]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "program_details" SET "program_id" = $1, "updated_at" = $2 WHERE "program_details"."id" = $3[0m  [["program_id", 12], ["updated_at", "2016-03-26 18:48:39.437072"], ["id", 12]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "program_details" ("address", "phone_number", "description", "days_offered", "time", "location_type", "meals_offered", "grades_served", "enrollment_type", "enrollment_period", "enrollment_requirements", "cost", "focus", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"  [["address", "846 Justine RestHowehaven"], ["phone_number", "(403) 101-6302"], ["description", "Pitchfork distillery twee slow-carb microdosing whatever hammock jean shorts asymmetrical."], ["days_offered", "2016-03-24"], ["time", "8:00AM - 6:00PM"], ["location_type", "dreamcatcher"], ["meals_offered", "chambray"], ["grades_served", "helvetica"], ["enrollment_type", "synth"], ["enrollment_period", "tacos"], ["enrollment_requirements", "slow-carb"], ["cost", "post-ironic"], ["focus", "Pinterest +1 organic."], ["created_at", "2016-03-26 18:48:39.441519"], ["updated_at", "2016-03-26 18:48:39.441519"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35mProgramDetail Load (0.2ms)[0m  SELECT  "program_details".* FROM "program_details" WHERE "program_details"."program_id" = $1 LIMIT 1  [["program_id", 13]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "program_details" SET "program_id" = $1, "updated_at" = $2 WHERE "program_details"."id" = $3  [["program_id", 13], ["updated_at", "2016-03-26 18:48:39.446152"], ["id", 13]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "program_details" ("address", "phone_number", "description", "days_offered", "time", "location_type", "meals_offered", "grades_served", "enrollment_type", "enrollment_period", "enrollment_requirements", "cost", "focus", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["address", "120 Murray IslandLake Nick"], ["phone_number", "(153) 325-6580"], ["description", "Yr tousled carry park retro butcher listicle bicycle rights."], ["days_offered", "2016-03-24"], ["time", "8:00AM - 6:00PM"], ["location_type", "cred"], ["meals_offered", "retro"], ["grades_served", "narwhal"], ["enrollment_type", "+1"], ["enrollment_period", "park"], ["enrollment_requirements", "echo"], ["cost", "heirloom"], ["focus", "Health kitsch celiac."], ["created_at", "2016-03-26 18:48:39.450659"], ["updated_at", "2016-03-26 18:48:39.450659"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mProgramDetail Load (0.2ms)[0m  [1mSELECT  "program_details".* FROM "program_details" WHERE "program_details"."program_id" = $1 LIMIT 1[0m  [["program_id", 14]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mUPDATE "program_details" SET "program_id" = $1, "updated_at" = $2 WHERE "program_details"."id" = $3[0m  [["program_id", 14], ["updated_at", "2016-03-26 18:48:39.455266"], ["id", 14]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "program_details" ("address", "phone_number", "description", "days_offered", "time", "location_type", "meals_offered", "grades_served", "enrollment_type", "enrollment_period", "enrollment_requirements", "cost", "focus", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"  [["address", "79803 Pascale HarborMontyfurt"], ["phone_number", "1-145-369-1054"], ["description", "Marfa offal celiac banjo."], ["days_offered", "2016-03-25"], ["time", "8:00AM - 6:00PM"], ["location_type", "park"], ["meals_offered", "twee"], ["grades_served", "hashtag"], ["enrollment_type", "try-hard"], ["enrollment_period", "gentrify"], ["enrollment_requirements", "cray"], ["cost", "synth"], ["focus", "Crucifix pitchfork literally butcher cardigan blog yr."], ["created_at", "2016-03-26 18:48:39.459951"], ["updated_at", "2016-03-26 18:48:39.459951"]]
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mProgramDetail Load (0.3ms)[0m  SELECT  "program_details".* FROM "program_details" WHERE "program_details"."program_id" = $1 LIMIT 1  [["program_id", 15]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "program_details" SET "program_id" = $1, "updated_at" = $2 WHERE "program_details"."id" = $3  [["program_id", 15], ["updated_at", "2016-03-26 18:48:39.465409"], ["id", 15]]
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "program_details" ("address", "phone_number", "description", "days_offered", "time", "location_type", "meals_offered", "grades_served", "enrollment_type", "enrollment_period", "enrollment_requirements", "cost", "focus", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["address", "860 Celestine ShoalsEast Frances"], ["phone_number", "665.326.5311"], ["description", "Pour-over fashion axe tousled cornhole venmo blue bottle."], ["days_offered", "2016-03-26"], ["time", "8:00AM - 6:00PM"], ["location_type", "umami"], ["meals_offered", "health"], ["grades_served", "ennui"], ["enrollment_type", "vice"], ["enrollment_period", "readymade"], ["enrollment_requirements", "etsy"], ["cost", "VHS"], ["focus", "Loko tattooed kitsch thundercats intelligentsia."], ["created_at", "2016-03-26 18:48:39.470526"], ["updated_at", "2016-03-26 18:48:39.470526"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mProgramDetail Load (0.3ms)[0m  [1mSELECT  "program_details".* FROM "program_details" WHERE "program_details"."program_id" = $1 LIMIT 1[0m  [["program_id", 16]]
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "program_details" SET "program_id" = $1, "updated_at" = $2 WHERE "program_details"."id" = $3[0m  [["program_id", 16], ["updated_at", "2016-03-26 18:48:39.476326"], ["id", 16]]
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "program_details" ("address", "phone_number", "description", "days_offered", "time", "location_type", "meals_offered", "grades_served", "enrollment_type", "enrollment_period", "enrollment_requirements", "cost", "focus", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"  [["address", "2909 Alycia TunnelLake Velda"], ["phone_number", "(216) 037-0534"], ["description", "Brooklyn direct trade flexitarian yuccie banjo."], ["days_offered", "2016-03-25"], ["time", "8:00AM - 6:00PM"], ["location_type", "irony"], ["meals_offered", "narwhal"], ["grades_served", "actually"], ["enrollment_type", "gluten-free"], ["enrollment_period", "tattooed"], ["enrollment_requirements", "organic"], ["cost", "chia"], ["focus", "Occupy seitan cornhole aesthetic wolf tilde."], ["created_at", "2016-03-26 18:48:39.481325"], ["updated_at", "2016-03-26 18:48:39.481325"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mProgramDetail Load (0.2ms)[0m  SELECT  "program_details".* FROM "program_details" WHERE "program_details"."program_id" = $1 LIMIT 1  [["program_id", 17]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "program_details" SET "program_id" = $1, "updated_at" = $2 WHERE "program_details"."id" = $3  [["program_id", 17], ["updated_at", "2016-03-26 18:48:39.486169"], ["id", 17]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "program_details" ("address", "phone_number", "description", "days_offered", "time", "location_type", "meals_offered", "grades_served", "enrollment_type", "enrollment_period", "enrollment_requirements", "cost", "focus", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["address", "618 Corrine MeadowPort Uriah"], ["phone_number", "1-396-906-7619"], ["description", "Green juice schlitz taxidermy fingerstache whatever."], ["days_offered", "2016-03-24"], ["time", "8:00AM - 6:00PM"], ["location_type", "blog"], ["meals_offered", "wolf"], ["grades_served", "paleo"], ["enrollment_type", "humblebrag"], ["enrollment_period", "biodiesel"], ["enrollment_requirements", "fap"], ["cost", "biodiesel"], ["focus", "Synth flannel direct trade green juice migas."], ["created_at", "2016-03-26 18:48:39.490677"], ["updated_at", "2016-03-26 18:48:39.490677"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mProgramDetail Load (0.2ms)[0m  [1mSELECT  "program_details".* FROM "program_details" WHERE "program_details"."program_id" = $1 LIMIT 1[0m  [["program_id", 18]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "program_details" SET "program_id" = $1, "updated_at" = $2 WHERE "program_details"."id" = $3[0m  [["program_id", 18], ["updated_at", "2016-03-26 18:48:39.496042"], ["id", 18]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "program_details" ("address", "phone_number", "description", "days_offered", "time", "location_type", "meals_offered", "grades_served", "enrollment_type", "enrollment_period", "enrollment_requirements", "cost", "focus", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"  [["address", "46118 Strosin GardensStarkville"], ["phone_number", "491.706.8643"], ["description", "Mumblecore drinking everyday tofu williamsburg you probably haven't heard of them aesthetic tote bag chillwave."], ["days_offered", "2016-03-25"], ["time", "8:00AM - 6:00PM"], ["location_type", "cliche"], ["meals_offered", "biodiesel"], ["grades_served", "locavore"], ["enrollment_type", "irony"], ["enrollment_period", "biodiesel"], ["enrollment_requirements", "banjo"], ["cost", "polaroid"], ["focus", "Migas meditation tilde brunch."], ["created_at", "2016-03-26 18:48:39.502786"], ["updated_at", "2016-03-26 18:48:39.502786"]]
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mProgramDetail Load (0.2ms)[0m  SELECT  "program_details".* FROM "program_details" WHERE "program_details"."program_id" = $1 LIMIT 1  [["program_id", 19]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "program_details" SET "program_id" = $1, "updated_at" = $2 WHERE "program_details"."id" = $3  [["program_id", 19], ["updated_at", "2016-03-26 18:48:39.508854"], ["id", 19]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "program_details" ("address", "phone_number", "description", "days_offered", "time", "location_type", "meals_offered", "grades_served", "enrollment_type", "enrollment_period", "enrollment_requirements", "cost", "focus", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) RETURNING "id"[0m  [["address", "1590 Toy ShoalSouth Martyhaven"], ["phone_number", "286-041-2902"], ["description", "Freegan sustainable scenester typewriter fingerstache pickled."], ["days_offered", "2016-03-26"], ["time", "8:00AM - 6:00PM"], ["location_type", "biodiesel"], ["meals_offered", "mustache"], ["grades_served", "paleo"], ["enrollment_type", "gastropub"], ["enrollment_period", "bushwick"], ["enrollment_requirements", "selvage"], ["cost", "distillery"], ["focus", "Direct trade biodiesel knausgaard disrupt selvage."], ["created_at", "2016-03-26 18:48:39.514531"], ["updated_at", "2016-03-26 18:48:39.514531"]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mProgramDetail Load (0.2ms)[0m  [1mSELECT  "program_details".* FROM "program_details" WHERE "program_details"."program_id" = $1 LIMIT 1[0m  [["program_id", 20]]
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.4ms)[0m  [1mUPDATE "program_details" SET "program_id" = $1, "updated_at" = $2 WHERE "program_details"."id" = $3[0m  [["program_id", 20], ["updated_at", "2016-03-26 18:48:39.521065"], ["id", 20]]
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36mProgram Load (1.3ms)[0m  [1mSELECT "programs".* FROM "programs"[0m
+  [1m[35mProgram Load (1.6ms)[0m  SELECT  "programs".* FROM "programs"  ORDER BY "programs"."id" ASC LIMIT 1
+  [1m[36mProgram Load (0.8ms)[0m  [1mSELECT  "programs".* FROM "programs"  ORDER BY "programs"."id" ASC LIMIT 1[0m
+  [1m[35mProgram Load (0.9ms)[0m  SELECT  "programs".* FROM "programs"  ORDER BY "programs"."id" ASC LIMIT 1
+  [1m[36mProgramDetail Load (0.9ms)[0m  [1mSELECT  "program_details".* FROM "program_details" WHERE "program_details"."program_id" = $1 LIMIT 1[0m  [["program_id", 1]]
